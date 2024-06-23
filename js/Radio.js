@@ -28,6 +28,12 @@ Radio.prototype.mostrar = function(id){
 }
 
 Radio.prototype.amagar = function(){
+
+  const trsOnline = document.querySelectorAll(`#programacio-container > table > tbody > tr`);
+  trsOnline.forEach((tr)=>{
+    const spinner =  tr.firstChild.querySelector('div.cargando');
+    spinner.style=('display:none');
+  })
   while(document.querySelector('.radio-container').firstElementChild){
     document.querySelector('.radio-container').removeChild(document.querySelector('.radio-container').firstChild);
   }
