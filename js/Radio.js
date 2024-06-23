@@ -14,11 +14,16 @@ function Radio(iframe){
   //this.allow="play";
 }
 
-Radio.prototype.mostrar = function(){
+Radio.prototype.mostrar = function(id){
   
   while(document.querySelector('.radio-container').firstElementChild){
     return;//si ja existeix no la tornem a crear...
   }
+
+  //Hacemos vivible el spinner del horario que esta activo.
+  const tdOnline = document.querySelector(`#programacio-container > table > tbody > tr#tr${id}`).firstChild;
+  const primerDiv = tdOnline.querySelector('div');
+  primerDiv.style=('display:block');
   document.querySelector('.radio-container').appendChild(this.iframe);//en cas que no la creem.
 }
 
@@ -60,7 +65,7 @@ Radio.prototype.comprovarProgramacio = function (configs){
           if( startTime <= ara && endTime >= ara){
             //TODO MOSTRAR RADIO
            
-            this.mostrar();                  
+            this.mostrar(configs[i].id);                  
             return;
           }
         }        

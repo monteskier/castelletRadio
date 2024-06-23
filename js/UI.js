@@ -116,13 +116,26 @@ UI.prototype.programacioHTML= function(){
   this.configs.forEach(config =>{
     
     const tr = document.createElement('tr');
+    const td_estat = document.createElement('td');
     const td_name = document.createElement('td');
     const td_ini = document.createElement('td');
     const td_fi = document.createElement('td');
     const td_accio = document.createElement('td');
     const td_delete = document.createElement('td');
     
-
+    tr.id = `tr${config.id}`;
+    tr.classList.add('centrar-verticalmente');
+    td_estat.innerHTML=`
+      <div class="cargando" style="display:none">
+        <div class="spinner">
+          <div class="rect1"></div>
+          <div class="rect2"></div>
+          <div class="rect3"></div>
+          <div class="rect4"></div>
+          <div class="rect5"></div>
+        </div>
+      </div>
+      `
     td_name.textContent = config.name;
     td_ini.textContent = daysOfWeekInCatalan[parseInt(config.diaInicial)-1];
     td_fi.textContent = daysOfWeekInCatalan[parseInt(config.diaFinal)-1];
@@ -151,7 +164,7 @@ UI.prototype.programacioHTML= function(){
       </svg>`     
     td_delete.addEventListener('click', ()=>this.eliminarProgramacio(config.id));
 
-    tr.append(td_name, td_ini, td_fi, td_accio, td_delete );
+    tr.append(td_estat, td_name, td_ini, td_fi, td_accio, td_delete );
     
     programacioContainer.querySelector('tbody').appendChild(tr);
     
